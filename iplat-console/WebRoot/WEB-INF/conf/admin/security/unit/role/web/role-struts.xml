@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<package name="org.leoan.iplat.admin.security.role" namespace="/admin/security/unit/role" extends="iplat-default">
+		
+		<action name="query_role" class="roleAction" method="queryRole">
+		    <result name="success" type="dispatcher">/list_role.jsp</result>
+		</action>
+		<action name="query_role_list" class="roleAction" method="queryRoleList">
+		    <result name="success" type="dispatcher">/list_role.jsp</result>
+		</action>
+		<action name="query_role_map" class="roleAction" method="queryRoleMap">
+		    <result name="success" type="dispatcher">/list_role.jsp</result>
+		</action>
+		
+		<action name="add_role" class="roleAction" method="addRole">
+		    <result name="success" type="dispatcher">list_role.jsp</result>
+		</action>
+		
+		<action name="pre_modify_role" class="roleAction" method="preModifyRole">
+		    <result name="success" type="dispatcher">/modify_role.jsp</result>
+		</action>
+		<action name="modify_role" class="roleAction" method="modifyRole">
+		    <result name="success" type="dispatcher">/list_role.jsp</result>
+		</action>
+		
+		<action name="delete_role" class="roleAction" method="deleteRole">
+		    <result name="success" type="dispatcher">/list_role.jsp</result>
+		</action>
+		
+	</package>
+</struts> 

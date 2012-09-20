@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- ****************************************************************** -->
+	<!-- *					 	      系统监控模块配置						  * -->
+	<!-- *																  * -->
+	<!-- * 加载系统监控模块配置。							  		  		  * -->
+	<!-- ****************************************************************** -->
+
+
+	<!-- ================================================================== -->
+	<!-- =						      系统监控模块配置 						  = -->
+	<!-- ================================================================== -->
+
+	<import resource="audit/monit-audit.xml" />
+	<import resource="log/monit-log.xml" />
+	
+</beans>

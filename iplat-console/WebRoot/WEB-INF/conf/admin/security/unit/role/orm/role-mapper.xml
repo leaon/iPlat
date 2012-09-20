@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.leaon.iplat.admin.security.unit.role.dao.RoleDao">
+	<resultMap id="RoleResultMap" type="org.leaon.iplat.admin.security.unit.role.model.RoleModel" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="DATE" />
+    <result column="INHERIT" property="inherit" jdbcType="CHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+  	</resultMap>
+	<sql id="role_column_list">
+		ID, NAME, TYPE, CREATE_TIME, MODIFY_TIME, INHERIT, PID
+	</sql>
+	<select id="selectRole" resultMap="RoleResultMap" parameterType="RoleModel">
+		select 
+    	<include refid="role_column_list" />
+    	from IPLAT.T_SEC_ROLE
+		<where>
+			<if test="ID != null">
+				ID = #{id}
+			</if>
+			<if test="NAME != null">
+				NAME = #{name}
+			</if>
+			<if test="TYPE != null">
+				AND TYPE = #{type}
+			</if>
+			<if test="CREATE_TIME != null">
+				AND CREATE_TIME = #{createTime}
+			</if>
+			<if test="MODIFY_TIME != null">
+				AND MODIFY_TIME = #{modifyTime}
+			</if>
+			<if test="INHERIT != null">
+				AND INHERIT = #{inherit}
+			</if>
+			<if test="PID != null">
+				AND PID = #{pid}
+			</if>
+		</where>
+	</select>
+	<delete id="deleteRole" parameterType="java.lang.String">
+		delete from IPLAT.T_SEC_ROLE
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertRole" parameterType="RoleModel">
+		insert into IPLAT.T_SEC_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="inherit != null">
+				INHERIT,
+			</if>
+			<if test="pid != null">
+				PID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=DATE},
+			</if>
+			<if test="inherit != null">
+				#{inherit,jdbcType=CHAR javaType=Boolean},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateRole" parameterType="RoleModel">
+		update IPLAT.T_SEC_ROLE
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=DATE},
+			</if>
+			<if test="inherit != null">
+				INHERIT = #{inherit,jdbcType=CHAR javaType=Boolean},
+			</if>
+			<if test="pid != null">
+				PID = #{pid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

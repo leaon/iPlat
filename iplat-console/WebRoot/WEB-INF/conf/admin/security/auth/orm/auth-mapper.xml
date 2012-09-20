@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.leaon.iplat.admin.security.auth.dao.AuthDao">
+
+	<!-- 二级缓存 -->
+	<!-- 	<cache type="org.mybatis.ehcache.LoggingEhcache" /> -->
+	
+	<!-- V_SEC_AUTH 账户、组、角色、授权视图 -->
+	<resultMap id="AuthResultMap" type="AuthModel">
+		<result column="ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_PASSWORD" property="accountPassword" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_LAST_LOGIN" property="accountLastLogin" jdbcType="DATE" />
+	    <result column="ACCOUNT_EXPIRE_TIME" property="accountExpireTime" jdbcType="DATE" />
+	    <result column="ACCOUNT_STATUS" property="accountStatus" jdbcType="VARCHAR" />
+	    
+	    <result column="POLICY_ID" property="policyId" jdbcType="VARCHAR" />
+	    <result column="POLICY_NAME" property="policyName" jdbcType="VARCHAR" />
+	    <result column="POLICY_MAX_DAYS" property="policyMaxDays" jdbcType="DECIMAL" />
+	    <result column="POLICY_WARN_BEFORE" property="policyWarnBefore" jdbcType="DECIMAL" />
+	    <result column="POLICY_ATTEMPTS_BEFORE_LOCK" property="policyAttemptsBeforeLock" jdbcType="DECIMAL" />
+	    <result column="POLICY_LOCKING_DAYS" property="policyLockingDays" jdbcType="DECIMAL" />
+	    
+	    <result column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+	    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+	    <result column="GROUP_TYPE" property="groupType" jdbcType="VARCHAR" />
+	    <result column="GROUP_ADMIN_ID" property="groupAdminId" jdbcType="VARCHAR" />
+	    
+	    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+	    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+	    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+	    <result column="ROLE_TYPE" property="roleType" jdbcType="VARCHAR" />
+	    <result column="ROLE_PID" property="rolePid" jdbcType="VARCHAR" />
+	    
+	    <result column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+	    <result column="MENU_CODE" property="menuCode" jdbcType="VARCHAR" />
+	    <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+	    <result column="MENU_URL" property="menuUrl" jdbcType="VARCHAR" />
+	    <result column="MENU_RANK" property="menuRank" jdbcType="DECIMAL" />
+	    <result column="MENU_PID" property="menuPid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="auth_column_list">
+		ACCOUNT_ID, ACCOUNT_NAME, ACCOUNT_PASSWORD, ACCOUNT_TYPE, ACCOUNT_LAST_LOGIN, ACCOUNT_EXPIRE_TIME, 
+		ACCOUNT_STATUS, POLICY_ID, POLICY_NAME, POLICY_MAX_DAYS, POLICY_WARN_BEFORE, POLICY_ATTEMPTS_BEFORE_LOCK, 
+		POLICY_LOCKING_DAYS, GROUP_ID, GROUP_NAME, GROUP_TYPE, GROUP_ADMIN_ID, ROLE_ID, ROLE_CODE, ROLE_NAME, 
+		ROLE_TYPE, ROLE_PID, MENU_ID, MENU_CODE, MENU_NAME, MENU_URL, MENU_RANK, MENU_PID
+	</sql>
+	<select id="selectAllAuth" resultMap="AuthResultMap" parameterType="AuthModel">
+		SELECT
+		<include refid="auth_column_list" />
+		FROM IPLAT.V_SEC_AUTH
+		<where>
+			<if test="ACCOUNT_ID != null">
+				ACCOUNT_ID = #{accountId}
+			</if>
+			<if test="ACCOUNT_NAME != null">
+				AND ACCOUNT_NAME = #{accountName}
+			</if>
+			<if test="ACCOUNT_PASSWORD != null">
+				AND ACCOUNT_PASSWORD = #{accountPassword}
+			</if>
+			<if test="ACCOUNT_TYPE != null">
+				AND ACCOUNT_TYPE = #{accountType}
+			</if>
+			<if test="ACCOUNT_LAST_LOGIN != null">
+				AND ACCOUNT_LAST_LOGIN = #{accountLastLogin}
+			</if>
+			<if test="ACCOUNT_EXPIRE_TIME != null">
+				AND ACCOUNT_EXPIRE_TIME = #{accountExpireTime}
+			</if>
+			<if test="ACCOUNT_STATUS != null">
+				AND ACCOUNT_STATUS = #{accountStatus}
+			</if>
+			<if test="POLICY_ID != null">
+				AND POLICY_ID = #{policyId}
+			</if>
+			<if test="POLICY_NAME != null">
+				AND POLICY_NAME = #{policyName}
+			</if>
+			<if test="POLICY_MAX_DAYS != null">
+				AND POLICY_MAX_DAYS = #{policyMaxDays}
+			</if>
+			<if test="POLICY_WARN_BEFORE != null">
+				AND POLICY_WARN_BEFORE = #{policyWarnBefore}
+			</if>
+			<if test="POLICY_ATTEMPTS_BEFORE_LOCK != null">
+				AND POLICY_ATTEMPTS_BEFORE_LOCK = #{policyAttemptsBeforeLock}
+			</if>
+			<if test="POLICY_LOCKING_DAYS != null">
+				AND POLICY_LOCKING_DAYS = #{policyLockingDays}
+			</if>
+			<if test="GROUP_ID != null">
+				AND GROUP_ID = #{groupId}
+			</if>
+			<if test="GROUP_NAME != null">
+				AND GROUP_NAME = #{groupName}
+			</if>
+			<if test="GROUP_TYPE != null">
+				AND GROUP_TYPE = #{groupType}
+			</if>
+			<if test="GROUP_ADMIN_ID != null">
+				AND GROUP_ADMIN_ID = #{groupAdminId}
+			</if>
+			<if test="ROLE_ID != null">
+				AND ROLE_ID = #{roleId}
+			</if>
+			<if test="ROLE_CODE != null">
+				AND ROLE_CODE = #{roleCode}
+			</if>
+			<if test="ROLE_NAME != null">
+				AND ROLE_NAME = #{roleName}
+			</if>
+			<if test="ROLE_TYPE != null">
+				AND ROLE_TYPE = #{roleType}
+			</if>
+			<if test="ROLE_PID != null">
+				AND ROLE_PID = #{rolePid}
+			</if>
+			<if test="MENU_ID != null">
+				AND MENU_ID = #{menuId}
+			</if>
+			<if test="MENU_CODE != null">
+				AND MENU_CODE = #{menuCode}
+			</if>
+			<if test="MENU_NAME != null">
+				AND MENU_NAME = #{menuName}
+			</if>
+			<if test="MENU_URL != null">
+				AND MENU_URL = #{menuUrl}
+			</if>
+			<if test="MENU_RANK != null">
+				AND MENU_RANK = #{menuRank}
+			</if>
+			<if test="MENU_PID != null">
+				AND MENU_PID = #{menuPid}
+			</if>
+		</where>
+	</select>
+	<select id="selectAccountPolicyAuth" resultMap="AuthResultMap" parameterType="String">
+		SELECT A.ID                   ACCOUNT_ID,
+		       A.NAME                 ACCOUNT_NAME,
+		       A.PASSWORD             ACCOUNT_PASSWORD,
+		       A.TYPE                 ACCOUNT_TYPE,
+		       A.LAST_LOGIN           ACCOUNT_LAST_LOGIN,
+		       A.EXPIRE_TIME          ACCOUNT_EXPIRE_TIME,
+		       A.STATUS               ACCOUNT_STATUS,
+		       P.ID                   POLICY_ID,
+		       P.NAME                 POLICY_NAME,
+		       P.MAX_DAYS             POLICY_MAX_DAYS,
+		       P.WARN_BEFORE          POLICY_WARN_BEFORE,
+		       P.ATTEMPTS_BEFORE_LOCK POLICY_ATTEMPTS_BEFORE_LOCK,
+		       P.LOCKING_DAYS         POLICY_LOCKING_DAYS
+		  FROM IPLAT.T_SEC_ACCOUNT A
+		  JOIN IPLAT.T_SEC_POLICY P
+		    ON (A.POLICY_ID = P.ID)
+		 WHERE A.NAME = #{accountName}
+	</select>
+	<select id="selectAccountRoleAuth" resultMap="AuthResultMap" parameterType="String">
+		SELECT A.ID ACCOUNT_ID, R.CODE ROLE_CODE
+		  FROM IPLAT.T_SEC_ACCOUNT A
+		  JOIN IPLAT.T_SEC_ACCOUNT_ROLE AR
+		    ON (A.ID = AR.ACCOUNT_ID)
+		  JOIN IPLAT.T_SEC_ROLE R
+		    ON (R.ID = AR.ROLE_ID)
+		 WHERE A.ID = #{accountId}
+	</select>
+	<select id="selectRoleMenuAuth" resultMap="AuthResultMap">
+		SELECT R.ID ROLE_ID, R.CODE ROLE_CODE, M.ID MENU_ID, M.URL MENU_URL
+		  FROM IPLAT.T_SEC_ROLE R
+		  JOIN IPLAT.T_SEC_ROLE_MENU RM
+		    ON (R.ID = RM.ROLE_ID)
+		  JOIN IPLAT.T_SEC_MENU M
+		    ON (M.ID = RM.MENU_ID)
+		 ORDER BY M.ID
+	</select>
+	<select id="selectRoleHierarchy" resultType="String" parameterType="String">
+		SELECT HIERARCHY
+		  FROM (SELECT CONNECT_BY_ISLEAF ISLEAF,
+		               (SUBSTR(SYS_CONNECT_BY_PATH(CODE, '>'), 2)) HIERARCHY
+		          FROM T_SEC_ROLE
+		         START WITH CODE = #{rootRole}
+		        CONNECT BY PID = PRIOR ID) ROLE_INHERIT
+		 WHERE ROLE_INHERIT.ISLEAF = 1
+	</select>
+
+	<!-- T_SEC_ACCOUNT_GROUP 账户、组关系表 -->
+	<resultMap id="AccountGroupResultMap" type="AccountGroupModel">
+		<result column="ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+		<result column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="account_group_column_list">
+		ACCOUNT_ID, GROUP_ID
+	</sql>
+	<select id="selectAccountGroupMap" resultMap="AccountGroupResultMap" parameterType="Map">
+		SELECT
+		<include refid="account_group_column_list" />
+		FROM IPLAT.T_SEC_ACCOUNT_GROUP
+		WHERE 
+		<if test="ACCOUNT_ID != null">
+			ACCOUNT_ID = #{accountId}
+		</if>
+		<if test="GROUP_ID != null">
+			AND GROUP_ID = #{groupId}
+		</if>
+	</select>
+	<insert id="insertAccountGroupMap" parameterType="AccountGroupModel">
+		insert into IPLAT.T_SEC_ACCOUNT_GROUP
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				ACCOUNT_ID,
+			</if>
+			<if test="groupId != null">
+				GROUP_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				#{accountId,jdbcType=VARCHAR},
+			</if>
+			<if test="groupId != null">
+				#{groupId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<delete id="deleteAccountGroupMap" parameterType="AccountGroupModel">
+		delete from IPLAT.T_SEC_ACCOUNT_GROUP
+		where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+		and GROUP_ID = #{groupId,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- T_SEC_ACCOUNT_ROLE 账户、角色关系表 -->
+	<resultMap id="AccountRoleResultMap" type="AccountRoleModel">
+		<result column="ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+		<result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="account_role_column_list">
+		ACCOUNT_ID, ROLE_ID
+	</sql>
+	<select id="selectAccountRoleMap" resultMap="AccountRoleResultMap" parameterType="Map">
+		SELECT
+		<include refid="account_role_column_list" />
+		FROM IPLAT.T_SEC_ACCOUNT_GROUP
+		WHERE 
+		<if test="ACCOUNT_ID != null">
+			ACCOUNT_ID = #{accountId}
+		</if>
+		<if test="ROLE_ID != null">
+			AND ROLE_ID = #{roleId}
+		</if>
+	</select>
+	<insert id="insertAccountRoleMap" parameterType="AccountRoleModel">
+		insert into IPLAT.T_SEC_ACCOUNT_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				ACCOUNT_ID,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				#{accountId,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<delete id="deleteAccountRoleMap" parameterType="AccountRoleModel">
+		delete from IPLAT.T_SEC_ACCOUNT_ROLE
+		where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+		and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- T_SEC_ROLE_MENU 角色、菜单关系表 -->
+	<resultMap id="RoleMenuResultMap" type="RoleMenuModel">
+		<result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+		<result column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="role_menu_column_list">
+		ROLE_ID, MENU_ID
+	</sql>
+	<select id="selectRoleMenuMap" resultMap="RoleMenuResultMap" parameterType="RoleMenuModel">
+		SELECT
+		<include refid="role_menu_column_list" />
+		FROM IPLAT.T_SEC_ACCOUNT_GROUP
+		WHERE 
+		<if test="ROLE_ID != null">
+			ROLE_ID = #{roleId}
+		</if>
+		<if test="MENU_ID != null">
+			AND MENU_ID = #{menuId}
+		</if>
+	</select>
+	<insert id="insertRoleMenuMap" parameterType="RoleMenuModel">
+		insert into IPLAT.T_SEC_ROLE_MENU
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="menuId != null">
+				MENU_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="menuId != null">
+				#{menuId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<delete id="deleteRoleMenuMap" parameterType="RoleMenuModel">
+		delete from IPLAT.T_SEC_ROLE_MENU
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+		and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- 分页 -->
+	<sql id=" page_prefix ">
+		<if test="page != null">
+			select * from ( select row_.*, rownum rownum_ from (
+		</if>
+	</sql>
+	<sql id="page_suffix">
+		<if test="page != null">
+      <![CDATA[ ) row_ ) where rownum_ > #{page.begin} and rownum_ <= #{page.end} ]]>
+		</if>
+	</sql>
+
+</mapper>

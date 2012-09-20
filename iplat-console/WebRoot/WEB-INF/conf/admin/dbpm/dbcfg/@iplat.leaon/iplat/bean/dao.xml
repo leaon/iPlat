@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- ****************************************************************** -->
+	<!-- *					 	        数据访问对象配置						  * -->
+	<!-- *																  * -->
+	<!-- * 数据访问对象配置，基于MyBatis和Spring JDBC 两种实现。				  * -->
+	<!-- ****************************************************************** -->
+
+
+
+	<!-- ================================================================== -->
+	<!-- =							  数据访问对象 						  	  = -->
+	<!-- ================================================================== -->
+
+	<!-- 基于MyBatis的数据持久化 -->
+	<bean id="sqlMapDAO-iplat.leaon-iplat" class="org.leaon.iplat.core.dbpm.dao.impl.IplatSqlSessionDao">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory-iplat.leaon-iplat" />
+		</property>
+	</bean>
+
+	<!--  基于 Spring JDBC 的数据访问对象  -->
+	<bean id="jdbcDAO-iplat.leaon-iplat" class="org.leaon.iplat.core.dbpm.dao.impl.IplatJdbcDao">
+		<property name="dataSource">
+			<ref bean="dataSource-iplat.leaon-iplat" />
+		</property>
+	</bean>
+
+</beans>

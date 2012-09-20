@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- ****************************************************************** -->
+	<!-- *					 	            二级缓存配置						  	  * -->
+	<!-- *																  * -->
+	<!-- * 基于Ehcache数据源的数据访问对象的配置。						 	  * -->
+	<!-- ****************************************************************** -->
+
+
+	<!-- ================================================================== -->
+	<!-- =							 缓存管理器配置 						  = -->
+	<!-- ================================================================== -->
+
+	<!-- 缓存管理器 -->
+	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>/WEB-INF/conf/admin/dbpm/dbcfg/@iplat.leaon/ehcache.xml</value>
+		</property>
+    </bean>
+
+    
+    <!-- ================================================================== -->
+    <!-- =                           缓存实例配置                                                              = -->
+    <!-- ================================================================== -->
+
+	<!-- 缺省缓存 -->
+	<bean id="defaultCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="ehcacheManager" />
+		</property>
+		<property name="cacheName">
+			<value>DEFAULT_CACHE</value>
+		</property>
+	</bean>   
+	
+    <!-- 静态缓存 -->
+    <bean id="pinnedCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager">
+            <ref local="ehcacheManager" />
+        </property>
+        <property name="cacheName">
+            <value>PINNED_CACHE</value>
+        </property>
+    </bean>
+    
+    <!-- 分布式缓存 -->
+	<bean id="replicatCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager">
+            <ref local="ehcacheManager" />
+        </property>
+        <property name="cacheName">
+            <value>REPLICAT_CACHE</value>
+        </property>
+    </bean> 
+    
+</beans>

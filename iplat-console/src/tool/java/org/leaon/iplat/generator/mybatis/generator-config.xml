@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="org/leaon/iplat/generator/mybatis/generator-config.properties" />
+	<!-- <classPathEntry location="${classPath}" /> -->
+	<!-- targetRuntime 此属性用于指定生成的代码的运行目标。 -->
+	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="conditional">   
+		<!-- 重新生成 qeuals，hashCode方法插件 -->  
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		
+		<!-- 大小写敏感插件 
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin> 
+		-->
+		
+		<!-- 
+		<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+			<property name="targetProject" value="${targetProject}" />
+		</plugin>
+		-->
+		 
+		<!-- 重命名插件 -->
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">  
+		   <property name="searchString" value="Example$" />
+           <property name="replaceString" value="Criteria" />
+        </plugin> 
+		
+		<!-- 可定制的映射文件生成插件 -->
+<!-- 		<plugin type="org.leaon.iplat.generator.mybatis.plugin.SqlMapperGeneratePlugin"></plugin> -->
+		
+		<!-- 基于Oracle的分页插件 -->
+		<plugin type="org.leaon.iplat.generator.mybatis.plugin.OraclePaginationPlugin"></plugin>
+		
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}"
+			userId="${userId}" password="${password}" />
+		<!-- 类型解析器 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />                                            
+		</javaTypeResolver>
+		
+		<!-- 实体类 -->
+		<javaModelGenerator targetPackage="${modelPackage}" targetProject="${targetProject}"> 
+			<property name="enableSubPackages" value="true" />
+		</javaModelGenerator>
+		
+		<!-- 实体类SQL映射文件 -->
+		<sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${targetProject}">    
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!-- 接口 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="${daoMapperPackage}"
+			targetProject="${targetProject}">
+			<property name="enableSubPackages" value="true" />                                        
+		</javaClientGenerator>
+		
+		<table schema="iplat" tableName="V_SEC_AUTH" domainObjectName="AccountModel" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false" >
+		</table>
+	</context>
+</generatorConfiguration> 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+<configuration>
+	
+	<!-- ****************************************************************** -->
+	<!-- *					 	 MyBatis的持久化配置					 	  * -->
+	<!-- *																  * -->
+	<!-- * 基于MyBatis的数据库访问配置。									  * -->
+	<!-- ****************************************************************** -->
+
+	<!-- 配置数据库特性 -->
+	<properties>
+		<property name="dialect" value="oracle" />
+	</properties>
+
+	<!-- 类型别名 -->
+	<typeAliases>
+				
+		<typeAlias alias="Map" type="java.util.Map" />
+		<typeAlias alias="String" type="java.lang.String" />
+		<typeAlias alias="List" type="java.util.List" />
+		
+		<!-- 授权模块 -->
+		<typeAlias alias="AuthModel" type="org.leaon.iplat.admin.security.auth.model.Auth" />
+		<typeAlias alias="AccountGroupModel" type="org.leaon.iplat.admin.security.auth.model.AccountGroupMap" />
+		<typeAlias alias="AccountRoleModel" type="org.leaon.iplat.admin.security.auth.model.AccountRoleMap" />
+		<typeAlias alias="RoleMenuModel" type="org.leaon.iplat.admin.security.auth.model.RoleMenuMap" />
+		
+		<!-- 角色模块 -->
+		<typeAlias alias="RoleModel" type="org.leaon.iplat.admin.security.unit.role.model.RoleModel" />
+	</typeAliases>
+
+	<!-- 类型转换器 -->
+	<typeHandlers>
+		<typeHandler javaType="Boolean" jdbcType="CHAR"
+			handler="org.leaon.iplat.core.dbpm.converter.BooleanTypeConverter" />
+	</typeHandlers>
+
+	<!-- 自定义分页插件，实现物理分页 -->
+	<!-- <plugins> <plugin interceptor="org.leaon.iplat.core.dbpm.pagination.PaginationInterceptor"/>  -->
+</configuration>

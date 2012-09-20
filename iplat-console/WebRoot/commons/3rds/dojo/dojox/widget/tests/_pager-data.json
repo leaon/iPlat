@@ -1,0 +1,19 @@
+{
+	identifier: 'name',
+	label:'label',
+	items: [
+		{ name:'widget0', label: 'dojoforDummies',      content: 'FoobarBAZ!' },
+		{ name:'widget1', label: 'dojoforaDummies',    content: 'FoobarBAZ!' },
+		{ name:'widget2', label: 'dojoforDdsummies',   content: 'FoobarBAZ!' },
+		{ name:'widget3', label: 'dojoforDudmmies',    content: 'FoobarBAZ!' },
+		{ name:'widget4', label: 'dojoforDfummies',  content: 'FoobarBAZ!' },
+		{ name:'widget5', label: 'dojotforDfummies', content: 'FoobarBAZ!' },
+		{ name:'widget6', label: 'dojofrorDfummies', content: 'FoobarBAZ!' },
+		{ name:'widget7', label: 'dojoforDfumemies', content: 'FoobarBAZ!' },
+		{ name:'widget8', label: 'dojoforDfummwies', content: 'FoobarBAZ!' },
+		{ name:'widget9', label: 'dojofodrDfummies', content: 'FoobarBAZ!' },
+		{ name:'widget10', label: 'dojofforDfummies', content: 'FoobarBAZ!' },
+		{ name:'widget11', label: 'dojofodrDfummies', content: 'FoobarBAZ!' },
+		{ name:'widget12', label: 'dojoforsDumfgmies',content: 'FoobarBAZ!' }
+	]
+}

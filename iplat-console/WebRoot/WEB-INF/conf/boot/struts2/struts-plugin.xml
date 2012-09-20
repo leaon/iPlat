@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+	<!-- ****************************************************************** -->
+	<!-- *					     Struts2插件始化配置					      * -->
+	<!-- *																  * -->
+	<!-- * 初始化WEB应用各项设置。										  	  * -->
+	<!-- ****************************************************************** -->
+
+
+<struts>
+
+	<!-- ================================================================== -->
+	<!-- = 						   Struts2插件加载						  = -->
+	<!-- ================================================================== -->
+	
+	<!-- Dojo 插件 -->
+	<bean type="org.apache.struts2.views.TagLibrary" name="sx" class="org.apache.struts2.dojo.views.DojoTagLibrary" />
+	
+	<!-- JasperReports 插件 -->
+	<package name="jasperreports-default" extends="struts-default">
+    	<result-types>
+    		<result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+    	</result-types>
+    </package>
+    
+    <!-- JFreeChart 插件 -->
+    <package name="jfreechart-default" extends="struts-default">
+    
+    	<result-types>
+    		<result-type name="chart" class="org.apache.struts2.dispatcher.ChartResult">
+    			<param name="height">150</param>
+    			<param name="width">200</param>
+    		</result-type>
+    	</result-types>
+    </package>
+</struts>

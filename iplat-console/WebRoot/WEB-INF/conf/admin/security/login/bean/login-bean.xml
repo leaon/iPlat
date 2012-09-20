@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	<!-- Action -->
+	<bean id="loginAction" class="org.leaon.iplat.admin.security.login.web.LoginAction" scope="prototype">
+	</bean>
+	
+	<!-- Service -->
+	<!-- 	<bean id="roleService" class="org.leaon.iplat.admin.security.unit.role.service.impl.RoleServiceImpl"> -->
+	<!-- 		<property name="roleDao"> -->
+	<!-- 			<ref local="roleDao" /> -->
+	<!-- 		</property> -->
+	<!-- 	</bean> -->
+	
+	<!-- DAO -->
+	<bean id="authDao" class="org.leaon.iplat.admin.security.auth.dao.AuthDao">
+		<property name="sqlSessionFactory">
+			<ref bean="sqlSessionFactory-iplat.leaon-iplat" />
+		</property>
+	</bean>
+	
+</beans>
+

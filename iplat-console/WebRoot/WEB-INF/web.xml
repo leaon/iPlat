@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- ****************************************************************** -->
+	<!-- *					 	  WEB应用初始化配置						  * -->
+	<!-- *																  * -->
+	<!-- * 初始化WEB应用各项设置。										  	  * -->
+	<!-- ****************************************************************** -->
+
+
+	<!-- ================================================================== -->
+	<!-- = 							工程部署描述符						  = -->
+	<!-- ================================================================== -->
+
+	<description>WEB应用基础平台</description>
+
+	<display-name>iPlat-Console</display-name>
+
+	<icon>
+		<small-icon>/commons/public/images/iplat-icon.gif</small-icon>
+		<large-icon>/commons/public/images/iplat-icon.gif</large-icon>
+	</icon>
+
+
+	<!-- ================================================================== -->
+	<!-- = 							   上下文参数						 	  = -->
+	<!-- ================================================================== -->
+
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>iplat-console.root</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/conf/boot/log4j/log4j.xml
+		</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>60000</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/conf/boot/spring/application-context.xml,
+			/WEB-INF/conf/boot/spring/application-security.xml,
+			/WEB-INF/conf/**/bean/*.xml
+		</param-value>
+	</context-param>
+
+
+	<!-- ================================================================== -->
+	<!-- = 							         监听器						 	  = -->
+	<!-- ================================================================== -->
+	
+	<!-- log4j 监听器 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.util.Log4jConfigListener
+		</listener-class>
+	</listener>
+	
+	<!-- Spring 核心监听器 -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+	<!-- Spring Security Session 监听器 -->
+	<listener>
+		<listener-class>
+			org.springframework.security.web.session.HttpSessionEventPublisher
+		</listener-class>
+	</listener> 
+	
+
+	<!-- ================================================================== -->
+	<!-- = 							        过滤器						 	  = -->
+	<!-- ================================================================== -->
+	
+	<!-- Spring Security过滤器 -->
+	<filter>
+	    <filter-name>springSecurityFilterChain</filter-name> 
+	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+	</filter>
+	<filter-mapping> 
+	    <filter-name>springSecurityFilterChain</filter-name> 
+	    <url-pattern>/*</url-pattern> 
+	</filter-mapping>
+	
+	<!-- 字符集过滤器 -->
+	<filter>
+		<filter-name>charsetEncoding</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>charsetEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Struts 2过滤器 
+		三个初始化参数：    
+        1、config参数：指定要加载的配置文件。逗号分割。    
+        2、actionPackages参数：指定Action类所在的包空间。逗号分割。    
+        3、configProviders参数：自定义配置文件提供者，需要实现ConfigurationProvider接口类。逗号分割。
+	-->
+	<filter>
+        <filter-name>struts2</filter-name>
+		<!-- 
+			<filter-class>
+				org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+			</filter-class> 
+		-->
+		<!-- 自定义过滤器，支持通配符方式的配置文件加载 -->
+		<filter-class>
+			org.leaon.iplat.core.web.IplatPrepareAndExecuteFilter
+		</filter-class>
+        <init-param>
+        	<param-name>config</param-name>
+        	
+        	<!-- 
+        		加载配置文件。
+        		Struts2默认从WEB-INF/classes/目录下加载文件，
+        		所以需要回退到上一层目录。
+        	 -->
+            <param-value>
+            	../conf/boot/struts2/struts-default.xml,
+            	../conf/boot/struts2/struts-plugin.xml,
+            	../conf/boot/struts2/struts.xml,
+            	../conf/**/web/*-struts.xml
+            </param-value>  
+        </init-param>
+    </filter>
+	<filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+	<!-- AjaxAnywhere 过滤器 -->
+	<filter>
+		<filter-name>AjaxAnywhere</filter-name>
+		<filter-class>org.ajaxanywhere.AAFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AjaxAnywhere</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AjaxAnywhere</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- UrlRewrite 过滤器 -->
+	<filter>
+	    <filter-name>UrlRewriteFilter</filter-name>
+	    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>UrlRewriteFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- ================================================================== -->
+	<!-- = 						     Servlet 					 	  	  = -->
+	<!-- ================================================================== -->
+	
+	<!-- DWR Servlet -->
+    <servlet>
+        <servlet-name>dwr</servlet-name>
+        <servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dwr</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+	
+	<!-- ================================================================== -->
+	<!-- = 						   Session 超时设置					 	  = -->
+	<!-- ================================================================== -->
+
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+	
+	<!-- ================================================================== -->
+	<!-- = 						     JSP相关设置					 	  	  = -->
+	<!-- ================================================================== -->
+	
+	<jsp-config>
+		<!-- Pager Taglib 标签库定义 -->
+	 	<taglib>
+	    	<taglib-uri>pager-tags</taglib-uri>
+	    	<taglib-location>/WEB-INF/tld/pager/pager-tags.tld</taglib-location>
+	  	</taglib>
+	  	
+	  	<!-- Struts 2 标签库 定义 -->
+	  	<taglib>
+	    	<taglib-uri>struts2-core-tags</taglib-uri>
+	    	<taglib-location>/WEB-INF/tld/struts2/struts-core-tags.tld</taglib-location>
+	  	</taglib>
+	  	<taglib>
+	    	<taglib-uri>struts2-dojo-tags</taglib-uri>
+	    	<taglib-location>/WEB-INF/tld/struts2/struts-dojo-tags.tld</taglib-location>
+	  	</taglib>
+	  	
+	  	<!-- Spring Security 标签库定义 -->
+	  	<taglib>
+	    	<taglib-uri>spring-security</taglib-uri>
+	    	<taglib-location>/WEB-INF/tld/spring/spring-security-tags.tld</taglib-location>
+	  	</taglib>
+	  	
+	  	<!-- AJAXAnyWhere 标签库定义 -->
+	  	<taglib>
+	    	<taglib-uri>ajaxanywhere-tags</taglib-uri>
+	    	<taglib-location>/WEB-INF/tld/ajaxanywhere/ajaxanywhere-tags.tld</taglib-location>
+	  	</taglib>
+	</jsp-config>
+	
+
+	<!-- ================================================================== -->
+	<!-- = 						             欢迎列表页					 		  = -->
+	<!-- ================================================================== -->
+
+	<welcome-file-list>
+		<welcome-file>index.do</welcome-file>
+	</welcome-file-list>
+
+	<!-- ================================================================== -->
+	<!-- = 						               错误定位					 		  = -->
+	<!-- ================================================================== -->
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/fail.jsp?error=404</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/fail.jsp?error=500</location>
+	</error-page>
+	
+</web-app>
+

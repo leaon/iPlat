@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ****************************************************************** -->
+	<!-- *						      配置Log4j日志输出  				  	 	  * -->
+	<!-- *																  * -->
+	<!-- * 各个模块的日志输出配置，支持的日志级别：OFF、FATAL、ERROR、WARN、 	  * -->
+	<!-- * INFO、DEBUG、ALL。										      * -->
+	<!-- ****************************************************************** -->
+
+    
+    <!-- ================================================================== -->
+    <!-- =                              输出器                                                                    = -->
+    <!-- ================================================================== -->
+    
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="Threshold" value="DEBUG"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] - %c : %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="DEBUG" />
+            <param name="levelMax" value="FATAL" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter> 
+    </appender>
+
+    <appender name="DailyRollingFile"
+        class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${iplat-console.root}/WEB-INF/log/iplat-console.log" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%d{yyyy-MM-dd HH:mm:ss} [%-5p] - %c : %m%n" />
+        </layout>
+    </appender>
+    
+
+	<!-- ================================================================== -->
+	<!-- =								日志器 						  	  = -->
+	<!-- ================================================================== -->
+	
+	<!-- 
+		<logger name="org.leaon.iplat" additivity="false">
+			<level value="DEBUG" />
+			<appender-ref ref="Console" />
+			<appender-ref ref="DailyRollingFile" />
+		</logger>
+	-->
+	
+    <root>
+		<level value="DEBUG" />
+        <appender-ref ref="Console" />
+        <appender-ref ref="DailyRollingFile" />
+    </root>
+    
+</log4j:configuration>

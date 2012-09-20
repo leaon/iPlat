@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<!-- ****************************************************************** -->
+	<!-- *					 	         系统安全配置						  	  * -->
+	<!-- *																  * -->
+	<!-- * 配置系统安全性以及访问控制策略。							  		  * -->
+	<!-- ****************************************************************** -->
+
+
+	<!-- ================================================================== -->
+	<!-- =						    设定相关安全性配置 						  = -->
+	<!-- ================================================================== -->
+	
+	<!-- 全局安全配置 -->
+	<!-- 
+		<security:global-method-security>
+		</security:global-method-security>
+	-->
+	
+	<!-- 自定义过滤器（20）
+	 	100 	- 	CHANNEL_FILTER                ChannelProcessingFilter
+	 	200 	- 	CONCURRENT_SESSION_FILTER     ConcurrentSessionFilter
+	 	300 	- 	SECURITY_CONTEXT_FILTER       SecurityContextPersistenceFilter
+	 	400 	- 	LOGOUT_FILTER                 LogoutFilter
+	 	500 	- 	X509_FILTER                   X509AuthenticationFilter
+	 	600 	- 	PRE_AUTH_FILTER               RequestHeaderAuthenticationFilter
+	 	700 	- 	CAS_FILTER                    CasAuthenticationFilter
+	 	800 	- 	FORM_LOGIN_FILTER             UsernamePasswordAuthenticationFilter
+	 	900 	- 	OPENID_FILTER                 OpenIDAuthenticationFilter
+	 	1000	- 	LOGIN_PAGE_FILTER             DefaultLoginPageGeneratingFilter
+	 	1100	- 	DIGEST_AUTH_FILTER            DigestAuthenticationFilter  			 
+	 	1200	- 	BASIC_AUTH_FILTER             BasicAuthenticationFilter
+	 	1300	- 	REQUEST_CACHE_FILTER          RequestCacheAwareFilter
+	 	1400	- 	SERVLET_API_SUPPORT_FILTER    SecurityContextHolderAwareRequestFilter
+	 	1500	- 	REMEMBER_ME_FILTER            RememberMeAuthenticationFilter
+	 	1600	- 	ANONYMOUS_FILTER              AnonymousAuthenticationFilter
+	 	1700	- 	SESSION_MANAGEMENT_FILTER     SessionManagementFilter
+	 	1800	-	EXCEPTION_TRANSLATION_FILTER  ExceptionTranslationFilter
+	 	1900	-	FILTER_SECURITY_INTERCEPTOR   FilterSecurityInterceptor
+	 	2000	-	SWITCH_USER_FILTER            SwitchUserFilter
+	-->
+	<!-- 
+		<security:filter-chain-map path-type="ant">
+			<security:filter-chain pattern="/**" filters="
+	 			ChannelProcessingFilter,
+				ConcurrentSessionFilter,
+				SecurityContextPersistenceFilter,        
+				LogoutFilter,
+				X509AuthenticationFilter,
+				RequestHeaderAuthenticationFilter,
+				CasAuthenticationFilter,
+				UsernamePasswordAuthenticationFilter,
+				OpenIDAuthenticationFilter,
+				DefaultLoginPageGeneratingFilter,
+				DigestAuthenticationFilter,
+				BasicAuthenticationFilter,
+				RequestCacheAwareFilter,
+				SecurityContextHolderAwareRequestFilter,
+				RememberMeAuthenticationFilter,
+				AnonymousAuthenticationFilter,
+				SessionManagementFilter,
+				ExceptionTranslationFilter,
+				FilterSecurityInterceptor,
+				SwitchUserFilter
+			"/> 
+		</security:filter-chain-map>
+	-->
+	 
+	<!-- 不纳入 Spring Security 管理的资源 -->
+	<security:http pattern="/commons/**" security="none" />
+	
+    <security:http pattern="/**/image/*" security="none" />
+    <security:http pattern="/**/css/*" security="none" />
+    <security:http pattern="/**/js/*" security="none" />
+    
+    <security:http pattern="/error.jsp" security="none" />
+    <security:http pattern="/deny.jsp" security="none" />
+    <security:http pattern="/fail.jsp" security="none" />
+    
+    <security:http pattern="/index.do" security="none" />
+    
+	
+	<!-- Spring Security 安全管理 -->	
+	<security:http auto-config='true' entry-point-ref="loginUrlEntryPoint">
+		
+		<!-- 访问控制 -->
+		<security:port-mappings>
+			<security:port-mapping http="80" https="443" />
+		</security:port-mappings>
+		
+		<security:anonymous username="您尚未登陆" />
+		
+		<security:access-denied-handler error-page="/deny.jsp" />
+		
+		<security:intercept-url pattern="/login.do" access="ROLE_ANONYMOUS"/>
+		
+		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/home.do" access="ROLE_USER,ROLE_ADMIN" />
+		
+		<security:intercept-url pattern="/**" access="ROLE_USER" />
+		
+		
+		<!-- Session 管理
+			Session 控制 max-sessions：可以创建几个用户； 
+			invalid-session-url:session：过期后跳转的页面；
+			error-if-maximum-exceeded="true"：禁止第二次登录；
+			session-fixation-protection：防止伪造的session攻击。
+		-->
+		<security:session-management invalid-session-url="/login.do?error=session_expired"
+			session-authentication-error-url="/login.do?error=session_exceed" session-fixation-protection="migrateSession">
+			<security:concurrency-control max-sessions="10" expired-url="/login.do?error=session_expired"
+				error-if-maximum-exceeded="true" />
+		</security:session-management>
+
+
+		<!-- 登录控制 -->
+		<security:remember-me />
+		
+		<security:logout logout-url="/sys-logout.do" logout-success-url="/index.do"
+			invalidate-session="true" />
+				
+		<security:form-login login-page="/login.do" login-processing-url="/sys-login.do"
+				username-parameter="username" password-parameter="password"
+				authentication-success-handler-ref="successHandler"
+				authentication-failure-handler-ref="failureHandler" /> 
+				<!-- 暂时不使用处理器 -->
+				<!--  
+					default-target-url="/home.do" 
+					authentication-failure-url="/login.do?error=auth_failure"
+					always-use-default-target="false" />
+				-->
+		<!-- 自定义登出过滤器 -->
+		<!--  
+			<custom-filter ref="iplatLogoutFilter" position="LOGOUT_FILTER" />
+		-->
+		
+		<!-- 自定义登录过滤器 -->
+		<!--  
+			<custom-filter ref="iplatFormLoginAuthenticationFilter" position="FORM_LOGIN_FILTER" />
+		-->
+		
+		<!-- 自定义安全过滤器 -->
+		<security:custom-filter ref="iplatSecurityFilter"  before="FILTER_SECURITY_INTERCEPTOR" />
+
+	</security:http>
+
+	<!-- 授权管理器， 验证配置 ， 认证管理器，实现用户认证的入口，主要实现UserDetailsService接口即可 -->
+	<security:authentication-manager alias="iplatAuthenticationManager">
+		<security:authentication-provider user-service-ref="iplatUserDetailService">
+			<security:password-encoder base64="false" ref="passwordEncoder">
+<!-- 				<security:salt-source user-property="name" /> -->
+			</security:password-encoder>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	
+	<!-- ================================================================== -->
+	<!-- =						 定义安全性相关的控制类 					  	  = -->
+	<!-- ================================================================== -->
+	
+	<!-- 配置权限缓存,使用静态缓存存储权限数据
+		<bean id="securityCache" class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+			<property name="cache">
+				<ref bean="defaultCache" />
+			</property>
+		</bean>
+	-->
+	
+	<!-- 登陆后跳转到登录前URL -->
+	<bean id="loginUrlEntryPoint" class="org.leaon.iplat.core.security.auth.entry.LoginUrlEntryPoint" />
+	
+	<!-- 数据库密码加密 -->
+	<!-- MD5 加密 -->
+	<!--  
+	    <bean id="passwordEncoder"
+	        class="org.springframework.security.authentication.encoding.Md4PasswordEncoder" />
+    -->
+    
+    <!-- Jasypt 加密 -->
+	<bean id="passwordEncoder" class="org.jasypt.springsecurity3.authentication.encoding.PBEPasswordEncoder">
+		<property name="pbeStringEncryptor">
+			<ref bean="jasyptPBEStringEncryptor" />
+		</property>
+	</bean>
+	<bean id="jasyptPBEStringEncryptor" class="org.jasypt.encryption.pbe.PooledPBEStringEncryptor">
+		<property name="algorithm" value="PBEWithMD5AndTripleDES" />
+		<property name="password" value="${security.auth.password.key}" />
+		<property name="poolSize" value="4" />
+	</bean>
+
+	<!--认证成功处理器-->
+    <bean id="successHandler"
+        class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">  
+        <property name="defaultTargetUrl" value="${security.login.success.url}" />
+        <property name="alwaysUseDefaultTargetUrl" value="false" />
+    </bean>
+    
+    <!-- 认证失败处理器 -->
+    <bean id="failureHandler"  
+        class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">  
+        <property name="defaultFailureUrl" value="${security.login.failure.url}" />
+    </bean>
+    
+
+	<!-- 平台登出验证过滤器（保留）。-->
+	<!--  
+		<bean id="iplatLogoutFilter" class="org.leaon.iplat.core.security.auth.filter.IplatLogoutAuthenticationFilter">
+			<constructor-arg name="logoutSuccessUrl" value="${security.logout.success.url}" />
+			<constructor-arg name="handlers">
+				<list>
+					<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+				</list>
+			</constructor-arg>
+			<property name="filterProcessesUrl" value="${security.logout.process.url}" />
+		</bean>
+	-->
+
+	<!-- 平台登录验证过滤器（保留）。-->
+	<!--  
+		<bean id="iplatFormLoginAuthenticationFilter"
+			class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+			<property name="filterProcessesUrl" value="${login.process.url}" />
+			<property name="usernameParameter" value="username" />
+			<property name="passwordParameter" value="password" />
+		</bean>
+	-->
+	
+	<!-- 平台安全过控制滤器。必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性， 所有控制将在这三个类中实现，解释详见具体配置。 -->
+	<bean id="iplatSecurityFilter" class="org.leaon.iplat.core.security.auth.IplatFilterSecurityInterceptor">
+		<property name="authenticationManager" ref="iplatAuthenticationManager" />
+		<property name="accessDecisionManager" ref="iplatAccessDecisionManager" />
+		<property name="securityMetadataSource" ref="iplatSecurityMetadataManager" />
+	</bean>
+
+	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+	<!-- 	<bean id="iplatAccessDecisionManager" class="org.leaon.iplat.core.security.auth.IplatAccessDecisionManager" /> -->
+	
+	<!-- 角色继承配置 -->
+	<bean id="iplatAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<bean class="org.springframework.security.web.access.expression.WebExpressionVoter" />
+				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+				<ref bean="roleHierarchyVoter" />
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean id="roleHierarchyVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
+		<constructor-arg name="roleHierarchy">
+			<ref local="roleHierarchy"/>
+		</constructor-arg>
+	</bean>
+	<bean id="roleHierarchy" class="org.leaon.iplat.admin.security.auth.domain.RoleHierarchyDaoImpl">
+		<constructor-arg name="authDao">
+			<ref bean="authDao"/>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问 -->
+	<bean id="iplatSecurityMetadataManager" class="org.leaon.iplat.admin.security.auth.domain.SecurityMetadataManager">
+		<constructor-arg name="lowerCaseComparisons" value="true" />
+		<constructor-arg name="urlMatcher">
+			<ref local="urlMatcher" />
+		</constructor-arg>
+		<constructor-arg name="authDao">
+			<ref bean="authDao" />
+		</constructor-arg>
+	</bean>
+
+	<!-- 在这个类中，你就可以从数据库中读入用户的密码，角色信息，是否锁定，账号是否过期等 -->
+	<bean id="iplatUserDetailService" class="org.leaon.iplat.admin.security.auth.domain.UserDetailManager">
+		<property name="authDao">
+			<ref bean="authDao"/>
+		</property>
+	</bean>
+	
+	<!-- 基于ANT的URL匹配器 -->
+	<bean id="urlMatcher" class="org.leaon.iplat.core.security.auth.AntUrlPathMatcher" />
+
+</beans>
