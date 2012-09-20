@@ -1,0 +1,1187 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.leaon</groupId>
+	<artifactId>iplat-parent</artifactId>
+	<version>1.0.0.RELEASE</version>
+	<packaging>pom</packaging>
+
+	<name>iplat-parent</name>
+	<description>Parent module of project IPlat.</description>
+	<inceptionYear>2010</inceptionYear>
+	<url>http://www.sourceforge.net/projects/iplat/</url>
+
+	<organization>
+		<name>leaon.org</name>
+		<url>http://www.leaon.org</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>leaon</id>
+			<name>Leaon</name>
+			<email>529315392@qq.com</email>
+			<url>http://www.leaon.org</url>
+			<organization>leaon.org</organization>
+			<organizationUrl>http://www.leaon.org</organizationUrl>
+			<roles>
+				<role>Administrator</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<properties>
+		<!-- 字符集编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Apache Commons 通用组件版本 -->
+		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<commons-chain.version>1.2</commons-chain.version>
+		<commons-cli.version>1.2</commons-cli.version>
+		<commons-codec.version>1.6</commons-codec.version>
+		<commons-collections.version>3.2.1</commons-collections.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<commons-digester.version>2.1</commons-digester.version>
+		<commons-exec.version>1.1</commons-exec.version>
+		<commons-fileupload.version>1.2.1</commons-fileupload.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<commons-io.version>2.1</commons-io.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-logging.version>1.1.1</commons-logging.version>
+		<commons-math.version>2.2</commons-math.version>
+		<commons-net.version>3.0.1</commons-net.version>
+		<commons-pool.version>1.5.7</commons-pool.version>
+		
+		<!-- Spring Framework 核心组件版本 -->
+		<spring-core.version>3.1.0.RELEASE</spring-core.version>
+		
+		<!-- AspectJ 版本 -->
+		<aspectjrt.version>1.7.0</aspectjrt.version>
+		<aspectjweaver.version>1.7.0</aspectjweaver.version>
+		<!-- JDBC 驱动程序组件版本 -->
+		<ojdbc14.version>10.2.0.4.0</ojdbc14.version>
+		<mysql-connector-java.version>5.1.18</mysql-connector-java.version>
+		<sqljdbc.version>3.0</sqljdbc.version>
+
+		<!-- ORM 持久化组件版本 -->
+		<mybatis.version>3.0.6</mybatis.version>
+		<mybatis-ehcache.version>1.0.0</mybatis-ehcache.version>
+		<mybatis-spring.version>1.0.1</mybatis-spring.version>
+		<mybatis-generator-core.version>1.3.1</mybatis-generator-core.version>
+
+
+		<!-- 二级缓存组件版本 -->
+		<ehcache-core.version>2.5.0</ehcache-core.version>
+		<ehcache-web.version>2.0.4</ehcache-web.version>
+		<ehcache-terracotta.version>2.1.1</ehcache-terracotta.version>
+		<jbosscache-pojo.version>3.0.0.GA</jbosscache-pojo.version>
+
+		<!-- 系统安全组件版本 -->
+		<spring-security.version>3.1.0.RELEASE</spring-security.version>
+		<spring-security-oauth.version>1.0.0.M4</spring-security-oauth.version>
+
+		<!-- 全文检索组件版本 -->
+		<lucene.version>3.5.0</lucene.version>
+
+		<!-- 批处理组件版本 -->
+		<spring-batch.version>2.1.8.RELEASE</spring-batch.version>
+
+		<!-- Spring 集成组件版本 -->
+		<spring-integration.version>2.1.0.RELEASE</spring-integration.version>
+
+		<!-- Spring 集成组件版本 -->
+		<spring-integration-version>2.1.0.RELEASE</spring-integration-version>
+
+		<!-- 任务调度组件版本 -->
+		<quartz.version>2.1.2</quartz.version>
+
+		<!-- 工作流组件版本 -->
+		<jbpm.version>5.2.0.Final</jbpm.version>
+
+		<!-- XML 解析组件版本 -->
+		<dom4j.version>1.6.1</dom4j.version>
+
+		<!-- Bean 映射组件版本 -->
+		<dozer.version>5.3.2</dozer.version>
+
+		<!-- C/C本地类库操作组件版本 -->
+		<jna.version>3.0.9</jna.version>
+
+		<!-- 日期操作组件版本 -->
+		<joda-time.version>2.0</joda-time.version>
+
+		<!-- 字符集编码探测组件 -->
+		<jchardet.version>1.0</jchardet.version>
+
+		<!-- 日志组件操作版本 -->
+		<logback.version>1.0.0</logback.version>
+		<log4j.version>1.2.16</log4j.version>
+
+		<!-- JavaEE API 组件版本 -->
+		<javaee-api.version>6.0</javaee-api.version>
+
+		<!-- Struts 组件版本 -->
+		<struts.version>1.2.9</struts.version>
+
+		<!-- Struts2 组件版本 -->
+		<struts2.version>2.3.4</struts2.version>
+
+		<!-- Spring MVC 组件版本 -->
+		<spring-webmvc.version>3.1.0.RELEASE</spring-webmvc.version>
+
+		<!-- Spring Web Flow 组件版本 -->
+		<spring-webflow.version>2.3.0.RELEASE</spring-webflow.version>
+		
+		<!-- Jasypt 加密组件版本 -->
+		<jasypt.version>1.9.0</jasypt.version>
+
+		<!-- 模板引擎版组件版本 -->
+		<freemarker.version>2.3.18</freemarker.version>
+
+		<!-- UrlRewrite 组件 -->
+		<urlrewrite.version>4.0.3</urlrewrite.version>
+
+		<!-- ajaxanywhere 组件 -->
+		<ajaxanywhere.version>1.2-rc2</ajaxanywhere.version>
+		
+		<!-- JSON 组件版本 -->
+		<jackson.version>1.9.3</jackson.version>
+
+		<!-- 分页组件版本 -->
+		<pager-taglib.version>2.0</pager-taglib.version>
+
+		<!-- 报表组件版本 -->
+		<jasperreports.version>4.5.0</jasperreports.version>
+		<jfreechart.version>1.0.13</jfreechart.version>
+
+		<!-- WEB 服务组件版本 -->
+		<!-- <spring-ws.version>2.0.3.RELEASE</spring-ws.version> -->
+
+		<!-- Apache CXF 组件版本 -->
+		<cxf.version>2.5.1</cxf.version>
+
+		<!-- LDAP 组件版本 -->
+		<spring-ldap.version>1.3.1.RELEASE</spring-ldap.version>
+
+		<!-- 消息组件版本 -->
+		<activemq.version>5.5.1</activemq.version>
+
+		<!-- Java tools 工具类版本 -->
+		<java-tools.version>1.6</java-tools.version>
+		
+		<!-- SNMP4J组件版本 -->
+		<snmp4j.version>2.1.0</snmp4j.version>
+		<snmp4j-agent.version>2.0.6</snmp4j-agent.version>
+		<snmp4j-agentx.version>2.1.0</snmp4j-agentx.version>
+		<snmp4j-agent-jmx.version>2.0.0</snmp4j-agent-jmx.version>
+		
+		<!-- trove 集合工具组件 -->
+		<trove.version>2.1.1</trove.version>
+		
+		<!-- Google Collections 集合工具组件 -->
+		<google-collections.version>1.0</google-collections.version>
+		
+		<!-- antlr 组件 -->
+		<antlr.version>3.3</antlr.version>
+		
+		<!-- javassit 组件 -->
+		<javassist.version>3.14.0-GA</javassist.version>
+		
+		<!-- 测试组件版本 -->
+		<junit.version>4.8.2</junit.version>
+		<htmlunit.version>2.9</htmlunit.version>
+		<jmockit.version>0.999.11</jmockit.version>
+	</properties>
+
+
+	<build>
+		<!-- 构建路径配置 -->
+		<sourceDirectory>src\main\java</sourceDirectory>
+		<scriptSourceDirectory>src\main\scripts</scriptSourceDirectory>
+		<testSourceDirectory>src\test\java</testSourceDirectory>
+		<outputDirectory>build\main-classes</outputDirectory>
+		<testOutputDirectory>build\test-classes</testOutputDirectory>
+		<resources>
+			<resource>
+				<directory>src\main\resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src\test\resources</directory>
+			</testResource>
+		</testResources>
+		<directory>target</directory>
+	</build>
+
+	<repositories>
+		<!--本地 - 远程构件发布版本仓库 <repository> <snapshots> <enabled>false</enabled> </snapshots> 
+			<id>public</id> <name>public-repos</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
+			</repository> 本地 - 私有构件发布版本仓库 <repository> <snapshots> <enabled>false</enabled> 
+			</snapshots> <id>releases</id> <name>releases-repos</name> <url>http://localhost:8081/nexus/content/repositories/releases</url> 
+			</repository> 本地 - 私有构件快照版本仓库 <repository> <snapshots /> <id>snapshots</id> 
+			<name>snapshots-repos</name> <url>http://localhost:8081/nexus/content/repositories/snapshots</url> 
+			</repository> 第三方 - Spring 构件发布版本仓库 <repository> <id>springsource-repo-release</id> 
+			<name>SpringSource Release Repository</name> <url>http://repo.springsource.org/release</url> 
+			</repository> 第三方 - Spring 构件里程碑版本仓库 <repository> <id>springsource-repo-milesotne</id> 
+			<name>SpringSource Milestone Repository</name> <url>http://maven.springframework.org/milestone</url> 
+			</repository> 第三方 - JBoss 构件发布版本仓库 <repository> <id>jboss-repo-release</id> 
+			<name>JBoss Release Repository</name> <url>https://repository.jboss.org/nexus/content/groups/public/</url> 
+			</repository> 第三方 - JBoss 构件快照版本仓库 <repository> <id>jboss-repo-shapshots</id> 
+			<name>JBoss Shnapshots Repository</name> <url>https://repository.jboss.org/nexus/content/groups/snapshots/</url> 
+			</repository> 解决trove无法找到问题 <repository> <id>nuxeo</id> <name>Nuxeo Repository</name> 
+			<url>http://maven.nuxeo.org/nexus/content/groups/public/</url> </repository> -->
+	</repositories>
+
+	<!-- <pluginRepositories> <pluginRepository> <snapshots> <enabled>false</enabled> 
+		</snapshots> <id>plugins</id> <name>plugins-repos</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
+		</pluginRepository> <pluginRepository> <snapshots /> <id>plugin-snapshots</id> 
+		<name>plugin-snapshots-repos</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
+		</pluginRepository> </pluginRepositories> -->
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://localhost:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Apache Commons 通用组件 -->
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-chain</groupId>
+				<artifactId>commons-chain</artifactId>
+				<version>${commons-chain.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>${commons-cli.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons-collections.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons-dbcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-digester</groupId>
+				<artifactId>commons-digester</artifactId>
+				<version>${commons-digester.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-exec</artifactId>
+				<version>${commons-exec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons-httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math</artifactId>
+				<version>${commons-math.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons-net.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${commons-pool.version}</version>
+			</dependency>
+			
+			<!-- Spring Framework 核心组件 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-asm</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-oxm</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring-core.version}</version>
+			</dependency>
+			
+			<!-- AspectJ 组件 -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectjrt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectjweaver.version}</version>
+			</dependency>
+            
+			<!-- JDBC 驱动程序组件 -->
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc14</artifactId>
+				<version>${ojdbc14.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microsoft</groupId>
+				<artifactId>sqljdbc</artifactId>
+				<version>${sqljdbc.version}</version>
+			</dependency>
+
+			<!-- ORM 持久化组件 -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-ehcache</artifactId>
+				<version>${mybatis-ehcache.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis-spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-core</artifactId>
+			<version>${mybatis-generator-core.version}</version>
+		</dependency>
+
+			<!-- 二级缓存组件 -->
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache-core</artifactId>
+				<version>${ehcache-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache-web</artifactId>
+				<version>${ehcache-web.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache-terracotta</artifactId>
+				<version>${ehcache-terracotta.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.cache</groupId>
+				<artifactId>jbosscache-pojo</artifactId>
+				<version>${jbosscache-pojo.version}</version>
+			</dependency>
+
+			<!-- 系统安全组件 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-acl</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-aspects</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-cas</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-ldap</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-openid</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-remoting</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth</artifactId>
+				<version>${spring-security-oauth.version}</version>
+			</dependency>
+
+			<!-- 全文检索组件 -->
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-core</artifactId>
+				<version>${lucene.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-queries</artifactId>
+				<version>${lucene.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-analyzers</artifactId>
+				<version>${lucene.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.lucene</groupId>
+				<artifactId>lucene-highlighter </artifactId>
+				<version>${lucene.version}</version>
+			</dependency>
+
+			<!-- 批处理组件 -->
+			<dependency>
+				<groupId>org.springframework.batch</groupId>
+				<artifactId>spring-batch-core</artifactId>
+				<version>${spring-batch.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.batch</groupId>
+				<artifactId>spring-batch-infrastructure</artifactId>
+				<version>${spring-batch.version}</version>
+			</dependency>
+
+			<!-- Spring 集成组件 -->
+			<dependency>
+				<groupId>org.springframework.integration</groupId>
+				<artifactId>spring-integration-core</artifactId>
+				<version>${spring-integration.version}</version>
+			</dependency>
+
+			<!-- 任务调度组件 -->
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+
+			<!-- 工作流组件 -->
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-workitems</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-test</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-persistence-jpa</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-human-task</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-flow</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-flow-builder</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-bpmn2</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-bam</artifactId>
+				<version>${jbpm.version}</version>
+			</dependency>
+
+			<!-- XML 解析组件 -->
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j.version}</version>
+			</dependency>
+
+			<!-- Bean 映射组件 -->
+			<dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
+				<version>${dozer.version}</version>
+			</dependency>
+
+			<!-- C/C本地类库操作组件 -->
+			<dependency>
+				<groupId>com.sun.jna</groupId>
+				<artifactId>jna</artifactId>
+				<version>${jna.version}</version>
+			</dependency>
+
+			<!-- 日期操作组件 -->
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>${joda-time.version}</version>
+			</dependency>
+
+			<!-- 字符集编码探测组件 -->
+			<dependency>
+				<groupId>net.sourceforge.jchardet</groupId>
+				<artifactId>jchardet</artifactId>
+				<version>${jchardet.version}</version>
+			</dependency>
+
+			<!-- 日志组件操作 -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+
+			<!-- Java EE API 组件 -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Struts 1.X 组件 -->
+			<dependency>
+				<groupId>struts</groupId>
+				<artifactId>struts</artifactId>
+				<version>${struts.version}</version>
+			</dependency>
+
+			<!-- Struts 2.X 组件 -->
+			<!-- 核心-Struts2核心组件 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-通过"Page Controller"的转换，减少Struts2的配置文件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-codebehind-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-Struts2运行期间可通过此插件查看Struts2的配置情况。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-config-browser-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-类似于Codebehind和zero-config(零配置)的转换。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-convention-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-Dojo插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-dojo-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-DWR插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-dwr-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-允许使用classpath或者jar包中的jsp文件。  -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-embeddedjsp-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-Google GXP 插件用于替代JSP的编译期类型检查。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-gxp-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-JasperReports报表。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-jasperreports-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-模版工具类，用于解析Struts2的标签。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-javatemplates-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-图标工具。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-jfreechart-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-JSF插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-jsf-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-JSON插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-json-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-JUnit插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-junit-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-OSGI插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-osgi-admin-bundle</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-插件-OSGI插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-osgi-demo-bundle</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-插件-OSGI插件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-osgi-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-提供对OVal验证框架的支持。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-oval-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-允许Struts2使用 Jason Pell's multipart parser 来处理上传文件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-pell-multipart-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-允许采用Plexus来创建，注入Struts2的Actions,Interceptors。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-plexus-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-通过Struts2来开发基于 JSR168 portlets的Web程序。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-portlet-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-提供Struts2的REST风格。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-rest-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-为Web Application生成流程图。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-sitegraph-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			
+			<!-- 插件-允许Sitemesh 模板访问Struts信息。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-sitemesh-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-允许Spring来完成对Strtus2的Actions,Interceptors和Results的创建或autowired。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-spring-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-允许使用现有的Struts1 中的Action和ActionForms与Struts2共存。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-struts1-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-测试插件，集成TestNG测试组件。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-testng-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			
+			<!-- 插件-允许Actions返回Tiles页面。 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-tiles-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+
+			<!-- Spring MVC 组件 -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring-webmvc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc-portlet</artifactId>
+				<version>${spring-webmvc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc-struts</artifactId>
+				<version>${spring-webmvc.version}</version>
+			</dependency>
+
+			<!-- Spring Web Flow 组件 -->
+			<dependency>
+				<groupId>org.springframework.webflow</groupId>
+				<artifactId>spring-webflow</artifactId>
+				<version>${spring-webflow.version}</version>
+			</dependency>
+			
+			<!-- Jasypt 加密组件 -->
+			<!-- 核心 -->
+			<dependency>
+		      <groupId>org.jasypt</groupId>
+		      <artifactId>jasypt</artifactId>
+		      <version>${jasypt.version}</version>
+		    </dependency>
+		    <!-- Spring 集成 -->
+		    <dependency>
+		      <groupId>org.jasypt</groupId>
+		      <artifactId>jasypt-spring31</artifactId>
+		      <version>${jasypt.version}</version>
+		    </dependency>
+		     <!-- Spring 集成 --> 
+		    <dependency>
+		      <groupId>org.jasypt</groupId>
+		      <artifactId>jasypt-springsecurity3</artifactId>
+		      <version>${jasypt.version}</version>
+		    </dependency>
+		    <!-- Apache Wicket 集成 -->
+		    <!-- 
+			    <dependency>
+			      <groupId>org.jasypt</groupId>
+			      <artifactId>jasypt-wicket15-</artifactId>
+			      <version>${jasypt.version}</version>
+			    </dependency>
+		     -->
+
+			<!-- 模版引擎组件 -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+			</dependency>
+			
+			<!-- UrlRewrite 组件 -->
+			<dependency>
+			    <groupId>org.tuckey</groupId>
+			    <artifactId>urlrewritefilter</artifactId>
+			    <version>${urlrewrite.version}</version>
+			</dependency>
+			
+			<!-- AjaxAnywhere 组件 -->
+			<dependency>
+				<groupId>org.ajaxanywhere</groupId>
+				<artifactId>ajaxanywhere</artifactId>
+				<version>${ajaxanywhere.version}</version>
+			</dependency>
+            
+			<!-- JSON 组件 -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-jaxrs</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<!-- 分页组件 -->
+			<dependency>
+				<groupId>com.jsptags</groupId>
+				<artifactId>pager-taglib</artifactId>
+				<version>${pager-taglib.version}</version>
+			</dependency>
+
+			<!-- 报表组件 -->
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>${jasperreports.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>jfree</groupId>
+				<artifactId>jfreechart</artifactId>
+				<version>${jfreechart.version}</version>
+			</dependency>
+
+			<!-- Spring Web Service 组件 -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.springframework.ws</groupId> -->
+			<!-- <artifactId>spring-ws</artifactId> -->
+			<!-- <version>${spring-ws.version}</version> -->
+			<!-- </dependency> -->
+
+			<!-- Apache CXF 组件 -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-core</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-databinding-aegis</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-local</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-jms</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-management</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-common-utilities</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+
+			<!-- LDAP 组件 -->
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-core</artifactId>
+				<version>${spring-ldap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-core-tiger</artifactId>
+				<version>${spring-ldap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-odm</artifactId>
+				<version>${spring-ldap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-ldif-core</artifactId>
+				<version>${spring-ldap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.ldap</groupId>
+				<artifactId>spring-ldap-ldif-batch</artifactId>
+				<version>${spring-ldap.version}</version>
+			</dependency>
+
+			<!-- 消息组件组件 -->
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-core</artifactId>
+				<version>${activemq.version}</version>
+			</dependency>
+
+			<!-- Java tools 工具包组件 -->
+			<dependency>
+				<groupId>com.sun</groupId>
+				<artifactId>tools</artifactId>
+				<version>${java-tools.version}</version>
+			</dependency>
+
+			<!-- SNMP4J 组件 -->
+			<dependency>
+				<groupId>org.snmp4j</groupId>
+				<artifactId>snmp4j</artifactId>
+				<version>${snmp4j.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.snmp4j</groupId>
+				<artifactId>snmp4j-agent</artifactId>
+				<version>${snmp4j-agent.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.snmp4j</groupId>
+				<artifactId>snmp4j-agentx</artifactId>
+				<version>${snmp4j-agentx.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.snmp4j</groupId>
+				<artifactId>snmp4j-agent-jmx</artifactId>
+				<version>${snmp4j-agent-jmx.version}</version>
+			</dependency>
+			
+			<!-- trove 集合处理工具组件 -->
+			<dependency>
+				<groupId>trove</groupId>
+				<artifactId>trove</artifactId>
+				<version>${trove.version}</version>
+			</dependency>
+			
+			<!-- Google Collections 集合处理工具组件 -->
+			<dependency>
+				<groupId>com.google.collections</groupId>
+				<artifactId>google-collections</artifactId>
+				<version>${google-collections.version}</version>
+			</dependency>
+			
+			<!-- javassist 组件 -->
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
+			</dependency>
+			
+			<!-- antlr 组件 -->
+			<dependency>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr</artifactId>
+				<version>${antlr.version}</version>
+			</dependency>
+			
+			<!-- 单元测试组件 -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- WEB 模拟访问组件 -->
+			<dependency>
+				<groupId>net.sourceforge.htmlunit</groupId>
+				<artifactId>htmlunit</artifactId>
+				<version>${htmlunit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- 模拟测试组件 -->
+			<dependency>
+				<groupId>com.googlecode.jmockit</groupId>
+				<artifactId>jmockit</artifactId>
+				<version>${jmockit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-flow-builder</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-human-task</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.cache</groupId>
+			<artifactId>jbosscache-pojo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+		</dependency>
+	</dependencies>
+</project>
