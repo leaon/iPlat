@@ -38,7 +38,7 @@ public class IplatPrepareAndExecuteFilter extends StrutsPrepareAndExecuteFilter 
 	 */
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		IplatInitOperations init = new IplatInitOperations(); //在这里使用我们自己写的TestInitOperations类，其继承自struts2的InitOpertions   
+		InitParamResolver init = new InitParamResolver(); //在这里使用我们自己写的TestInitOperations类，其继承自struts2的InitOpertions   
         try {  
             FilterHostConfig config = new FilterHostConfig(filterConfig);  
             init.initLogging(config);  

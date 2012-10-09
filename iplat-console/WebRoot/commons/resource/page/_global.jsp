@@ -19,3 +19,9 @@
 <%@ taglib prefix="sx" uri="struts2-dojo-tags"%>
 <%@ taglib prefix="sec" uri="spring-security"%>
 <%@ taglib prefix="ajax" uri="ajaxanywhere-tags"%>
+
+<%
+	String base = request.getContextPath();
+	String path = request.getScheme() + "://" + request.getServerName()
+			+ ":" + request.getServerPort() + base;
+%>

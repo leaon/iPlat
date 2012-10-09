@@ -6,14 +6,16 @@
 <struts>
 	<package name="admin-security-login" namespace="/" extends="iplat-default">
 		<action name="home" class="loginAction" method="goHome">
-		    <result name="user-home">/home.jsp</result>
-		    <result name="admin-home">/admin/home.jsp</result>
+			<result name="user-home">/home.jsp</result>
+			<result name="admin-home">/admin/home.jsp</result>
 		</action>
-		<action name="index" class="loginAction" method="goIndex" >
-		    <result name="index">/index.jsp</result>
+		<action name="index" class="loginAction" method="goIndex">
+			<result name="index">/index.jsp</result>
+			<result name="home" type="redirect">/home.do</result>
 		</action>
-		<action name="login" class="loginAction" method="goLogin" >
-		    <result name="login">/login.jsp</result>
+		<action name="login" class="loginAction" method="goLogin">
+			<result name="login">/login.jsp</result>
+			<result name="home" type="redirect">/home.do</result>
 		</action>
 	</package>
 </struts>

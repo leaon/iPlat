@@ -4,6 +4,7 @@
 
 package org.leaon.iplat.admin.security.login.service.impl;
 
+import org.leaon.iplat.admin.security.login.dao.LoginDao;
 import org.leaon.iplat.admin.security.login.service.LoginService;
 
 /**
@@ -19,5 +20,23 @@ import org.leaon.iplat.admin.security.login.service.LoginService;
  *
  */
 public class LoginServiceImpl implements LoginService {
+	
+	// ~ Fields ====================================================================================
+	
+	private LoginDao loginDao;
 
+	
+	// ~ Constructors ==============================================================================
+	
+	// ~ Methods ===================================================================================
+	
+	// ~ Getters & Setters =========================================================================
+	
+	public LoginDao getLoginDao() {
+		return loginDao;
+	}
+
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
+	}
 }

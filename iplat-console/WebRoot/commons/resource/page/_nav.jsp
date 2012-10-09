@@ -1,12 +1,12 @@
 <%--
 	/**
-	 * Description 友情链接页面，用于加载友情链接地址。
+	 * Description 导航页面，用于显示系统的导航链接信息。
 	 *
 	 * Author Leaon
 	 * 
 	 * Date					Author				Description			
 	 * ---------------------------------------------------------------------------------------------
-	 * 2012-9-19			Leaon				创建_link.jsp。
+	 * 2012-8-17			Leaon				创建_navigation.jsp。
 	 *
 	 */
 --%>
@@ -22,8 +22,9 @@
     </head>
     <body>
 --%>
-		<div id="link">
-			友情链接：<a href="www.baidu.com">百度</a> | <a href="www.sina.com">新浪</a>
+		<div id="mainnav">
+		</div>
+		<div id="subnav">
 		</div>
 <%--    	
     </body>

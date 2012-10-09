@@ -6,7 +6,7 @@
 	 * 
 	 * Date					Author				Description			
 	 * ---------------------------------------------------------------------------------------------
-	 * 2012-8-17			Leaon				创建home.jsp。
+	 * 2012-8-17			Leaon				创建index.jsp。
 	 *
 	 */
 --%>    
@@ -33,24 +33,25 @@
 		<%@ include file="commons/resource/page/_style.jsp"%>
 		<%@ include file="commons/resource/page/_script.jsp"%>
 	</head>
-	<frameset rows="80,*,20" cols="*" frameborder="yes" border="1"
-		framespacing="1" s>
-		<frame src="/commons/resource/page/_header.jsp" name="header"
-			scrolling="no" noresize="noresize" id="header" title="header" />
-		<frameset cols="80,*,40" frameborder="yes" border="1" framespacing="1">
-			<frame src="/commons/resource/page/_menu.jsp" name="menu"
-				scrolling="auto" id="menu" title="menu" />
-			<frame src="/commons/resource/page/_main.jsp" name="main" id="main"
-				title="main" />
-			<frame src="/commons/resource/page/_tool.jsp" name="tool" id="tool"
-				title="tool" />
-		</frameset>
-		<frame src="commons/resource/page/_status.jsp" name="status"
-			scrolling="no" id="status" title="status" />
-	</frameset>
-	<noframes>
-		<body>
-			您的浏览器不支持框架页，请使用其他浏览器！
-		</body>
-	</noframes>
+	<body>
+		<div id="wapper">
+			<%@ include file="/commons/resource/page/_header.jsp"%> <%-- 头部页 --%>
+		
+			<%@ include file="/commons/resource/page/_nav.jsp"%>	<%-- 导航页 --%>
+			
+			<%@ include file="/commons/resource/page/_left.jsp"%>	<%-- 左侧页 --%>
+			
+			<%@ include file="/commons/resource/page/_center.jsp"%>	<%-- 主导页 --%>
+			
+			<%@ include file="/commons/resource/page/_tool.jsp"%>	<%-- 右侧页 --%>
+			
+			<%@ include file="/commons/resource/page/_status.jsp"%>	<%-- 状态页 --%>
+			
+			<%@ include file="/commons/resource/page/_footer.jsp"%>	<%-- 脚部页 --%>
+		</div>
+				
+		<script type="text/javascript">							<%-- 脚本区--%>
+			
+		</script>
+	</body>
 </html>

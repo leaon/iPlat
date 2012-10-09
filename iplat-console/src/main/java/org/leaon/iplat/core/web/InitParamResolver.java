@@ -29,7 +29,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * 2012-9-17			Leaon				创建IplatInitOperations.java。
  *
  */
-public class IplatInitOperations extends InitOperations {
+public class InitParamResolver extends InitOperations {
 
 	// ~ Fields ====================================================================================
 

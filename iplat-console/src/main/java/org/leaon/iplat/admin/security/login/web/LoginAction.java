@@ -24,10 +24,19 @@ public class LoginAction extends IplatActionSupport {
 	
 	// ~ Fields ====================================================================================
 	
+	/**
+	 * 登录过程中的错误标识。
+	 */
 	private String error;
 	
+	/**
+	 * 授权模块服务类。
+	 */
 	private AuthService authService;
 	
+	/**
+	 * 登录模块服务类。
+	 */
 	private LoginService loginService;
 	
 	
@@ -39,6 +48,18 @@ public class LoginAction extends IplatActionSupport {
 	 * @return
 	 */
 	public String goLogin(){
+		//处理错误信息，将错误码转换为实际消息内容。
+		if(error !=null){
+			System.out.println(getText(error));
+			addActionError(getText(error));
+		}
+//		if("ROLE_ADMIN"){
+//			return "admin-home";
+//		}else if("ROLE_USER"){
+//			return "user-home";
+//		}else {
+//			return "login";
+//		}
 		return "login";
 	}
 	
@@ -48,6 +69,14 @@ public class LoginAction extends IplatActionSupport {
 	 * @return
 	 */
 	public String goIndex(){
+		//判断当前用户权限，并跳转到相应的主页。
+//		if("ROLE_ADMIN"){
+//			return "admin-home";
+//		}else if("ROLE_USER"){
+//			return "user-home";
+//		}else {
+//			return "index";
+//		}
 		return "index";
 	}
 	

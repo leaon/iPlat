@@ -61,7 +61,7 @@
 	<constant name="struts.ui.theme" value="xhtml" />
 
 	<!-- 该属性指定视图主题所需要模板文件的位置，该属性的默认值是template，即默认加载template路径下的模板文件。 -->
-	<constant name="struts.ui.templateDir" value="../commons/template" />
+		<constant name="struts.ui.templateDir" value="template" />
 
 	<!-- 该属性指定模板文件的后缀，该属性的默认属性值是ftl。该属性还允许使用ftl、vm或jsp，分别对应FreeMarker、 Velocity和JSP模板。 -->
 	<constant name="struts.ui.templateSuffix" value="ftl" />

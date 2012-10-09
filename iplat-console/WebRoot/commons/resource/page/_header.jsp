@@ -21,9 +21,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />       
     </head>
     <body>
---%>
-		<div id="top">
-			-----------------------------------这是Logo页---------------------------------------
+--%>	
+		<div class="logo">
+			<div  id="logo-left">
+			</div>
+			<div  id="logo-center">
+			</div>
+			<div  id="logo-right">
+			</div>
 		</div>
 <%--     	
     </body>

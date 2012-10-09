@@ -22,8 +22,13 @@
     </head>
     <body>
 --%>    
-		<div id="bottom">
-        	<p>Copyright © 2010 - 2012 Leaon. All Rights Reserved.</p>
+		<div id="friendlink">
+			<div class="alert alert-info"  align="center">
+				作者简介　-　联系方法　-　招聘信息　-　客户服务　-　隐私政策　-　网络营销　-　网站地图　-　用户体验提升计划
+			</div>
+    	</div>
+        <div id="copyright">
+         	Copyright © 2010 - 2012 Leaon. All Rights Reserved.
         </div>
 <%--        
     </body>

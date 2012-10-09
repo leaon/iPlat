@@ -81,6 +81,7 @@
     <security:http pattern="/deny.jsp" security="none" />
     <security:http pattern="/fail.jsp" security="none" />
     
+    <security:http pattern="/login.do" security="none" />
     <security:http pattern="/index.do" security="none" />
     
 	
@@ -96,11 +97,8 @@
 		
 		<security:access-denied-handler error-page="/deny.jsp" />
 		
-		<security:intercept-url pattern="/login.do" access="ROLE_ANONYMOUS"/>
-		
 		<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/home.do" access="ROLE_USER,ROLE_ADMIN" />
-		
 		<security:intercept-url pattern="/**" access="ROLE_USER" />
 		
 		
@@ -110,9 +108,9 @@
 			error-if-maximum-exceeded="true"：禁止第二次登录；
 			session-fixation-protection：防止伪造的session攻击。
 		-->
-		<security:session-management invalid-session-url="/login.do?error=session_expired"
-			session-authentication-error-url="/login.do?error=session_exceed" session-fixation-protection="migrateSession">
-			<security:concurrency-control max-sessions="10" expired-url="/login.do?error=session_expired"
+		<security:session-management invalid-session-url="/login.do?error=session.expired"
+			session-authentication-error-url="/login.do?error=session.exceed" session-fixation-protection="migrateSession">
+			<security:concurrency-control max-sessions="10" expired-url="/login.do?error=session.expired"
 				error-if-maximum-exceeded="true" />
 		</security:session-management>
 
@@ -130,7 +128,7 @@
 				<!-- 暂时不使用处理器 -->
 				<!--  
 					default-target-url="/home.do" 
-					authentication-failure-url="/login.do?error=auth_failure"
+					authentication-failure-url="/login.do?error=auth.failure"
 					always-use-default-target="false" />
 				-->
 		<!-- 自定义登出过滤器 -->
@@ -206,7 +204,7 @@
     </bean>
     
 
-	<!-- 平台登出验证过滤器（保留）。-->
+	<!-- 平台登出验证过滤器（保留）-->
 	<!--  
 		<bean id="iplatLogoutFilter" class="org.leaon.iplat.core.security.auth.filter.IplatLogoutAuthenticationFilter">
 			<constructor-arg name="logoutSuccessUrl" value="${security.logout.success.url}" />
@@ -219,7 +217,7 @@
 		</bean>
 	-->
 
-	<!-- 平台登录验证过滤器（保留）。-->
+	<!-- 平台登录验证过滤器（保留）-->
 	<!--  
 		<bean id="iplatFormLoginAuthenticationFilter"
 			class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
@@ -239,7 +237,7 @@
 	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
 	<!-- 	<bean id="iplatAccessDecisionManager" class="org.leaon.iplat.core.security.auth.IplatAccessDecisionManager" /> -->
 	
-	<!-- 角色继承配置 -->
+	<!-- 基于角色继承的访问决策管理器 -->
 	<bean id="iplatAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
 		<constructor-arg name="decisionVoters">
 			<list>

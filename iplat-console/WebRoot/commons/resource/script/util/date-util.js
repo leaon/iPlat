@@ -15,7 +15,7 @@
  *
  * Date						Author				Description			
  * ---------------------------------------------------------------------------------------------
- * 2012-08-17				Leaon				创建DateUtil.js。
+ * 2012-08-17				Leaon				创建date-util.js。
  *
  */
 function DateUtil(year, month, day, hour, minute, second) {

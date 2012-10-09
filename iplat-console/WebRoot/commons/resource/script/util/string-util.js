@@ -9,7 +9,7 @@
  *
  * Date						Author				Description			
  * ---------------------------------------------------------------------------------------------
- * 2012-08-17				Leaon				创建StringUtil.js。
+ * 2012-08-17				Leaon				创建string-util.js。
  *
  */
 function StringUtil() {

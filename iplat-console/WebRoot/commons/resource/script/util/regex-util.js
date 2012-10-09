@@ -9,7 +9,7 @@
  *
  * Date						Author				Description			
  * ---------------------------------------------------------------------------------------------
- * 2012-08-17				Leaon				创建RegexUtil.js。
+ * 2012-08-17				Leaon				创建regex-util.js。
  *
  */
 function RegexUtil() {
